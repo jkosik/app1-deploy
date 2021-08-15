@@ -9,3 +9,20 @@ Potential risk of merging DEV and STAGE into one non-prod cluster are: 1) Chance
 Latest versions of ArgoCD allow declarative GitOps CD for ArgoCD itself and we are not limited only to submit Application resources.
 We can manage multiple ArgoCD objects via GitOps, including ArgoCD configuration ConfigMaps, Projects or Repositores. Check [Operator manual](https://argo-cd.readthedocs.io/en/latest/operator-manual/declarative-setup/) for details and caveats.
 
+## ArgoCD deployment
+```
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app1-deploy
+spec:
+  destination:
+    name: ''
+    namespace: argocd
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: .
+    repoURL: 'https://github.com/jkosik/app1-deploy.git'
+    targetRevision: main
+  project: default
+```
