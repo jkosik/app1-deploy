@@ -27,3 +27,5 @@ spec:
     repoURL: 'https://github.com/jkosik/app1-deploy.git'
     targetRevision: main
 ```
+
+3. Sync in ArgoCD - set tu manual. Dependency service is configured to be deployed only to DEV environment.
