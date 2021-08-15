@@ -16,7 +16,7 @@ spec:
     metadata:
       name: 'app1-{{cluster}}'
     spec:
-      project: default
+      project: app1
       source:
         repoURL: https://github.com/jkosik/app1.git
         targetRevision: '{{cluster}}'
