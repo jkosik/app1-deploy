@@ -1,10 +1,13 @@
-apiVersion: argoproj.io/v1alpha1
-kind: AppProject
-metadata:
-  name: app1
-  namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
-spec:
-  description: 'App1 Application'
+# Deploying dedicated ArgoCD Project for app1 can be part of automation
+
+# ---
+# apiVersion: argoproj.io/v1alpha1
+# kind: AppProject
+# metadata:
+#   name: app1
+#   namespace: argocd
+#   finalizers:
+#     - resources-finalizer.argocd.argoproj.io
+# spec:
+#   description: 'App1 Application'
 

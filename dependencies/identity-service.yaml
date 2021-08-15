@@ -1,9 +1,9 @@
 # Could be also Application Set deploying various Helm Chart versions
-# or Git Repo branches to various target clusters or namespaces
+# or Git Repo branches to various target clusters or namespaces based on app1 needs.
 
 # Application owner and Release Manager have to decide about dependency management.
-# dependencies can be integral part of app1 configuration (i.e. Helm subchart or dependency)
-# or can be separate ArgoCD Application (i.e. considered as external application)
+# Dependencies can be a) integral part of app1 Helm charts as Helm dependencies and Helm Subcharts
+# or 2) can be deployed as separate external ArgoCD Application (demonstrated by this manifest).
 
 ---
 apiVersion: argoproj.io/v1alpha1
