@@ -17,6 +17,7 @@ kind: Application
 metadata:
   name: app1-deploy
 spec:
+  project: app1
   destination:
     name: ''
     namespace: argocd
@@ -25,5 +26,4 @@ spec:
     path: .
     repoURL: 'https://github.com/jkosik/app1-deploy.git'
     targetRevision: main
-  project: app1
 ```
