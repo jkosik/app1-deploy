@@ -11,8 +11,6 @@ We can manage multiple ArgoCD objects via GitOps, including ArgoCD configuration
 In production, also this repository may contain DEV-STAGE-PROD branch management and `app1` can be deployed to non-prod ArgoCD instance.
 `app1` Application Owner should however interact only with production ArgoCD cluster and consume it as a service.
 
-
-## ArgoCD deployment
 ```
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -27,5 +25,5 @@ spec:
     path: .
     repoURL: 'https://github.com/jkosik/app1-deploy.git'
     targetRevision: main
-  project: default
+  project: app1
 ```
