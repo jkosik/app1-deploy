@@ -1,3 +1,6 @@
+#kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj-labs/applicationset/v0.1.0/manifests/install.yaml
+
+---
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
