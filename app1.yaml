@@ -20,7 +20,7 @@ spec:
       source:
         repoURL: https://github.com/jkosik/app1.git
         targetRevision: '{{cluster}}'
-        path: '{{cluster}}'
+        path: '.'
       destination:
         server: '{{url}}'
         namespace: 'app1-{{cluster}}'
