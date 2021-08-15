@@ -23,7 +23,7 @@ spec:
         path: '{{cluster}}'
       destination:
         server: '{{url}}'
-        namespace: '{{cluster}}'
+        namespace: 'app1-{{cluster}}'
       syncPolicy:
         syncOptions:
           - ApplyOutOfSyncOnly=true
