@@ -15,7 +15,7 @@ This repository may contain DEV-STAGE-PROD branch management and child applicati
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: app1-deploy
+  name: argocd-app1
 spec:
   project: app1
   destination:
@@ -24,7 +24,7 @@ spec:
     server: 'https://kubernetes.default.svc'
   source:
     path: .
-    repoURL: 'https://github.com/jkosik/app1-deploy.git'
+    repoURL: 'https://github.com/jkosik/arcgocd-app1.git'
     targetRevision: main
 ```
 
