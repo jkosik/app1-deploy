@@ -1,20 +1,20 @@
-# apiVersion: batch/v1
-# kind: Job
-# metadata:
-#   generateName: update-ns-
-#   annotations:
-#     argocd.argoproj.io/hook: PreSync
-#     #argocd.argoproj.io/hook-delete-policy: HookSucceeded
-# spec:
-#   template:
-#     spec:
-#       containers:
-#       - name: update-ns
-#         image: bitnami/kubectl
-#         command:
-#           - "kubectl"
-#           - "create"
-#           - "ns"
-#           - "app1"
-#       restartPolicy: Never
-#   backoffLimit: 2
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: update-ns-
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+    #argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  template:
+    spec:
+      containers:
+      - name: update-ns
+        image: bitnami/kubectl
+        command:
+          - "kubectl"
+          - "create"
+          - "ns"
+          - "app1"
+      restartPolicy: Never
+  backoffLimit: 2
