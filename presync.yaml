@@ -15,8 +15,7 @@ spec:
           - "kubectl"
           - "create"
           - "ns"
-          - "app1-dev"
-          - "--dry-run=client -o yaml"
-          - " | kubectl apply -f -"
+          - "||"
+          - "true"
       restartPolicy: Never
   backoffLimit: 2
