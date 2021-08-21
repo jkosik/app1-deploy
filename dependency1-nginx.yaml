@@ -9,6 +9,10 @@ kind: Application
 metadata:
   name: app1-dev-dependency1
   namespace: argocd
+  annotation:
+    argocd-image-updater.argoproj.io/image-list: nginx=nginx:~1.21
+    argocd-image-updater.argoproj.io/nginx.update-strategy: name
+    argocd-image-updater.argoproj.io/nginx.allow-tags: regexp:^1.21.[0-9]+$
 spec:
   project: app1
   source:
