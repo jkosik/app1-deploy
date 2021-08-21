@@ -45,10 +45,10 @@ argocd-image-updater run --applications-api argocd --argocd-server-addr 127.0.0.
 argocd-image-updater.argoproj.io/image-list: app1=jkosik/app1,nginx=nginx:~1.21
 argocd-image-updater.argoproj.io/app1.update-strategy: name
 argocd-image-updater.argoproj.io/app1.allow-tags: regexp:^dev-[0-9]+$
+
+argocd-image-updater.argoproj.io/image-list: nginx=nginx:~1.21
 argocd-image-updater.argoproj.io/nginx.update-strategy: name
 argocd-image-updater.argoproj.io/nginx.allow-tags: regexp:^1.21.[0-9]+$
-
-
 
 
 argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd-image-updater/git-creds
