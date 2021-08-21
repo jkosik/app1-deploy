@@ -15,8 +15,6 @@ spec:
           - "kubectl"
           - "create"
           - "ns"
-          - "app1-dev"
-          - "||"
-          - "true"
+          - "app1-dev || true"
       restartPolicy: Never
   backoffLimit: 2
