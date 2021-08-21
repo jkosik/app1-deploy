@@ -11,10 +11,7 @@ spec:
       containers:
       - name: update-ns
         image: bitnami/kubectl
-        command:
-          - "kubectl"
-          - "create"
-          - "ns"
-          - "app1-dev || true"
+        command: ["/bin/sh","-c"]
+        args: ["kubectl create ns app1-dev || true"]
       restartPolicy: Never
   backoffLimit: 2
