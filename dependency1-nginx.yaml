@@ -10,7 +10,7 @@ metadata:
   name: app1-dev-dependency1
   namespace: argocd
   annotations:
-    argocd-image-updater.argoproj.io/image-list: nginx=docker.io/bitnami/nginx:~1.21
+    argocd-image-updater.argoproj.io/image-list: nginx=bitnami/nginx:~1.21
     argocd-image-updater.argoproj.io/nginx.helm.image-name: image.repository
     argocd-image-updater.argoproj.io/nginx.helm.image-tag: image.tag
     argocd-image-updater.argoproj.io/nginx.update-strategy: name
