@@ -28,7 +28,7 @@ spec:
     server: 'https://kubernetes.default.svc'
   source:
     path: .
-    repoURL: 'https://github.com/jkosik/arcgocd-app1.git'
+    repoURL: 'https://github.com/jkosik/argocd-app1.git'
     targetRevision: main
 ```
 
