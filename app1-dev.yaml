@@ -55,4 +55,3 @@ spec:
     automated:
       prune: false
       selfHeal: true
-    validate: true
