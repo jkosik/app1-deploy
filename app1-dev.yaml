@@ -40,6 +40,8 @@ kind: Application
 metadata:
   name: app1-dev
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   project: app1
   source:

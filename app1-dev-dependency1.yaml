@@ -9,6 +9,8 @@ kind: Application
 metadata:
   name: app1-dev-dependency1
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
   annotations:
     argocd-image-updater.argoproj.io/image-list: nginx=bitnami/nginx:~1.21
     argocd-image-updater.argoproj.io/nginx.force-update: "true"
