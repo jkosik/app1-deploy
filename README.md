@@ -30,6 +30,10 @@ spec:
     path: .
     repoURL: 'https://github.com/jkosik/argocd-app1.git'
     targetRevision: main
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
 ```
 
 3. Sync in ArgoCD - set tu manual. Dependency service is configured to be deployed only to DEV environment.
