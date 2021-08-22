@@ -62,6 +62,9 @@ spec:
     repoURL: 'https://github.com/jkosik/app1.git'
     targetRevision: main
     path: '.'
+    helm:
+      valueFiles:
+        - values-dev.yaml
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: app1-dev
