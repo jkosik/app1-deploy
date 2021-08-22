@@ -50,6 +50,7 @@ metadata:
     argocd-image-updater.argoproj.io/nginx.update-strategy: name
     argocd-image-updater.argoproj.io/nginx.allow-tags: regexp:^1.21.[0-9]+$
     argocd-image-updater.argoproj.io/app1.allow-tags: regexp:^dev-[0-9]+$
+    argocd-image-updater.argoproj.io/<image_name>.ignore-tags: "dev"
     #argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd-image-updater/git-creds
 spec:
   project: app1
