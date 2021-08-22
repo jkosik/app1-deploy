@@ -68,5 +68,8 @@ Not using git-creds. dependency Application can not write to docker.io/bitnami
     argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd-image-updater/git-creds
 ```
 
+Stop updating image temporarily:
+argocd-image-updater.argoproj.io/<image_name>.ignore-tags: "*"
+
 
 
