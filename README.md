@@ -56,14 +56,14 @@ Not using git-creds. dependency Application can not write to docker.io/bitnami
     argocd-image-updater.argoproj.io/nginx.allow-tags: regexp:^1.21.[0-9]+$
 ```
 
-nginx is part of subchart and image and tag reference must follow path from values.yaml file, i.e. prefixed by nginx (nginx.image.repository, nginx.image.tag)
+nginx is part of subchart and image and tag reference must follow path from values.yaml file, i.e. prefixed by nginx (nginx.image.name, nginx.image.tag)
 app1.helm.image-name and app1.helm.image-tag contain default path and are used only for clarity (could be removed)
 ```
   annotations:
     argocd-image-updater.argoproj.io/image-list: app1=jkosik/app1,nginx=nginx:~1.21
     argocd-image-updater.argoproj.io/nginx.force-update: "true"
     argocd-image-updater.argoproj.io/nginx.update-strategy: name
-    argocd-image-updater.argoproj.io/nginx.helm.image-name: nginx.image.repository
+    argocd-image-updater.argoproj.io/nginx.helm.image-name: nginx.image.name
     argocd-image-updater.argoproj.io/nginx.helm.image-tag: nginx.image.tag
     argocd-image-updater.argoproj.io/nginx.allow-tags: regexp:^1.21.[0-9]+$
     argocd-image-updater.argoproj.io/app1.force-update: "true"
@@ -80,3 +80,12 @@ argocd-image-updater.argoproj.io/<image_name>.ignore-tags: "*"
 
 
 
+demo
+
+original tags:
+kubectl -n app1-dev get po -o yaml | grep image
+
+argocd-image-updater recognized newer version in DockerHub
+kubectl -n argocd get applications app1-dev -o yaml
+
+Sync triggers pod update with ne version
