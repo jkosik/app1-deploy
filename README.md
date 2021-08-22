@@ -56,16 +56,19 @@ Not using git-creds. dependency Application can not write to docker.io/bitnami
     argocd-image-updater.argoproj.io/nginx.allow-tags: regexp:^1.21.[0-9]+$
 ```
 
+nginx is part of subchart and image and tag reference must follow path from values.yaml file, i.e. prefixed by nginx (nginx.image.repository, nginx.image.tag)
 ```
   annotations:
     argocd-image-updater.argoproj.io/image-list: app1=jkosik/app1,nginx=nginx:~1.21
     argocd-image-updater.argoproj.io/nginx.force-update: "true"
-    argocd-image-updater.argoproj.io/nginx.helm.image-name: image.repository
-    argocd-image-updater.argoproj.io/nginx.helm.image-tag: image.tag
     argocd-image-updater.argoproj.io/nginx.update-strategy: name
+    argocd-image-updater.argoproj.io/nginx.helm.image-name: nginx.image.repository
+    argocd-image-updater.argoproj.io/nginx.helm.image-tag: nginx.image.tag
     argocd-image-updater.argoproj.io/nginx.allow-tags: regexp:^1.21.[0-9]+$
+    argocd-image-updater.argoproj.io/app1.force-update: "true"
+    argocd-image-updater.argoproj.io/app1.update-strategy: name
     argocd-image-updater.argoproj.io/app1.allow-tags: regexp:^dev-[0-9]+$
-    argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd-image-updater/git-creds
+    argocd-image-updater.argoproj.io/app1.ignore-tags: "dev"
 ```
 
 Stop updating image temporarily:
