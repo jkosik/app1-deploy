@@ -19,7 +19,7 @@ Deploy App of Apps:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd-app1
+  name: argocd-app1-app-of-apps
 spec:
   project: app1
   destination:
