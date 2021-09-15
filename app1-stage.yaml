@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: app1-dev
+  name: app1-stage
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -17,21 +17,22 @@ metadata:
     argocd-image-updater.argoproj.io/app1.update-strategy: name
     argocd-image-updater.argoproj.io/app1.helm.image-name: image.name
     argocd-image-updater.argoproj.io/app1.helm.image-tag: image.tag
-    argocd-image-updater.argoproj.io/app1.allow-tags: regexp:^dev-[0-9]+$
-    argocd-image-updater.argoproj.io/app1.ignore-tags: "dev"
+    argocd-image-updater.argoproj.io/app1.allow-tags: regexp:^stage-[0-9]+$
+    argocd-image-updater.argoproj.io/app1.ignore-tags: "stage"
     #argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd-image-updater/git-creds
 spec:
   project: app1
   source:
     repoURL: 'https://github.com/jkosik/app1.git'
-    targetRevision: dev
+    targetRevision: stage
     path: '.'
     helm:
       valueFiles:
-        - values-dev.yaml
+        - values-stage.yaml
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: app1-dev
+    namespace: app1-stage
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
+

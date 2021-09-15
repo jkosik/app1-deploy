@@ -1,0 +1,74 @@
+#kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj-labs/applicationset/v0.1.0/manifests/install.yaml
+
+# ---
+# apiVersion: argoproj.io/v1alpha1
+# kind: ApplicationSet
+# metadata:
+#   name: app1
+# spec:
+#   generators:
+#   - list:
+#       elements:
+#       - cluster: dev
+#         url: https://kubernetes.default.svc # CHANGE ME TO WORKLOAD CLUSTER DEV
+#       - cluster: stage
+#         url: https://kubernetes.default.svc # CHANGE ME TO WORKLOAD CLUSTER STAGE
+#       - cluster: prod
+#         url: https://kubernetes.default.svc # CHANGE ME TO WORKLOAD CLUSTER PROD
+#   template:
+#     metadata:
+#       name: 'app1-{{cluster}}'
+#     spec:
+#       project: app1
+#       source:
+#         repoURL: https://github.com/jkosik/app1.git
+#         targetRevision: '{{cluster}}'
+#         path: '.'
+#       destination:
+#         server: '{{url}}'
+#         namespace: 'app1-{{cluster}}'
+#       syncPolicy:
+#         syncOptions:
+#           - ApplyOutOfSyncOnly=true
+#           - CreateNamespace=true
+
+
+# argocd-image-updater does not support ApplicationSet yet. Use Application instead.
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app1
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: app1=jkosik/app1,nginx=nginx:~1.21
+    argocd-image-updater.argoproj.io/nginx.force-update: "true"
+    argocd-image-updater.argoproj.io/nginx.update-strategy: name
+    argocd-image-updater.argoproj.io/nginx.helm.image-name: nginx.image.name
+    argocd-image-updater.argoproj.io/nginx.helm.image-tag: nginx.image.tag
+    argocd-image-updater.argoproj.io/nginx.allow-tags: regexp:^1.21.[0-9]+$
+    argocd-image-updater.argoproj.io/app1.force-update: "true"
+    argocd-image-updater.argoproj.io/app1.update-strategy: name
+    argocd-image-updater.argoproj.io/app1.helm.image-name: image.name
+    argocd-image-updater.argoproj.io/app1.helm.image-tag: image.tag
+    argocd-image-updater.argoproj.io/app1.allow-tags: regexp:^[0-9]+$
+    #argocd-image-updater.argoproj.io/app1.ignore-tags: "prod"
+    #argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd-image-updater/git-creds
+spec:
+  project: app1
+  source:
+    repoURL: 'https://github.com/jkosik/app1.git'
+    targetRevision: main
+    path: '.'
+    helm:
+      valueFiles:
+        - values.yaml
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: app1
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true

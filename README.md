@@ -1,6 +1,7 @@
-# ArgoCD Application Deployment
-This project follows Application of Applications ArgoCD pattern for deploying sample application `app1`.
-ArgoCD Application `argocd-app1` deploys all ArgoCD resources from this repository including child Applications referring to separate Git or Helm repositories.
+# ArgoCD Application of Applications
+This project follows Application of Applications ArgoCD pattern for deploying sample 3 child applications. In this case 3 versions of `app1` Application. In real world App of Apps will deploy set of application composing a product including its dependencies. Dependencies can be a whole separate ArgoCD Application or a Helm dependency within the ArgoCD Application.
+
+Each ArgoCD Application can follow any Helm Charts and any values files.
 
 ## ArgoCD preparation
 - Install [ApplicationSet Controller](https://argocd-applicationset.readthedocs.io/en/stable/Getting-Started/).
@@ -11,9 +12,9 @@ ArgoCD Application `argocd-app1` deploys all ArgoCD resources from this reposito
 ApplicationSet can simplify declaration of `app1` deployment to DEV, STAGE and PROD target clusters.
 
 2. Create ArgoCD Application following this repository's `main` branch.
-This repository may contain DEV-STAGE-PROD branches for own App of Apps code development. However, `app1` Application Owner should interact only with production ArgoCD cluster and consume it as a service.
-Deploy App of Apps:
+This repository may contain DEV-STAGE-PROD branches for own App of Apps manifests development.
 
+Deploy App of Apps:
 ```
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -46,7 +47,7 @@ argocd-image-updater run --applications-api argocd --argocd-server-addr 127.0.0.
 ```
 
 #### Annotation example
-Example for `app1` containing one parent Helm Chart and on child subchart.
+Example for `app1`. For demonstrating complexity `app1` acts as the Umbrella Helm Chart with Subchart (nginx) and also external dependency (haproxy).
 
 Nginx is part of subchart and image and tag reference in the Annotation must follow path from values.yaml file, i.e. prefixed by nginx (nginx.image.name, nginx.image.tag)
 app1.helm.image-name and app1.helm.image-tag contain default path and are used only for clarity (could be removed)
