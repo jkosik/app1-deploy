@@ -1,10 +1,7 @@
-# ArgoCD Application of Applications
-This project follows Application of Applications ArgoCD pattern for deploying sample 3 child applications. In this case 3 versions of `app1` Application. In real world App of Apps will deploy set of application composing a product including its dependencies. Dependencies can be a whole separate ArgoCD Application or a Helm dependency within the ArgoCD Application.
-
-Each ArgoCD Application can follow any Helm Charts and any values files.
+# ArgoCD Image Updater
 
 ## ArgoCD preparation
-- Install [ApplicationSet Controller](https://argocd-applicationset.readthedocs.io/en/stable/Getting-Started/).
+- Install [ApplicationSet Controller](https://argocd-applicationset.readthedocs.io/en/stable/Getting-Started/). Note: ArgoCD Image Updater do not support ApplicationSets (11/2021)
 - Install and configure [ArgoCD Image Updater](https://argocd-image-updater.readthedocs.io/en/stable/install/start/). At the moment supports only Application resources, not ApplicationSets.
 
 ## Application onboarding
