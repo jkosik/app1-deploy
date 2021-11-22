@@ -2,6 +2,7 @@
 
 ## ArgoCD preparation
 - Install [ApplicationSet Controller](https://argocd-applicationset.readthedocs.io/en/stable/Getting-Started/). Note: ArgoCD Image Updater do not support ApplicationSets (11/2021)
+- Project to build new image tags to test AIU: https://github.com/jkosik/argocd-image-updater-app
 - Install and configure [ArgoCD Image Updater](https://argocd-image-updater.readthedocs.io/en/stable/install/start/). At the moment supports only Application resources, not ApplicationSets.
 
 ## Manual triggers
