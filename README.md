@@ -4,38 +4,7 @@
 - Install [ApplicationSet Controller](https://argocd-applicationset.readthedocs.io/en/stable/Getting-Started/). Note: ArgoCD Image Updater do not support ApplicationSets (11/2021)
 - Install and configure [ArgoCD Image Updater](https://argocd-image-updater.readthedocs.io/en/stable/install/start/). At the moment supports only Application resources, not ApplicationSets.
 
-## Application onboarding
-1. Create ArgoCD Project `app1`
-ApplicationSet can simplify declaration of `app1` deployment to DEV, STAGE and PROD target clusters.
-
-2. Create ArgoCD Application following this repository's `main` branch.
-This repository may contain DEV-STAGE-PROD branches for own App of Apps manifests development.
-
-Deploy App of Apps:
-```
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: argocd-app1-app-of-apps
-spec:
-  project: app1
-  destination:
-    name: ''
-    namespace: argocd
-    server: 'https://kubernetes.default.svc'
-  source:
-    path: .
-    repoURL: 'https://github.com/jkosik/argocd-app1.git'
-    targetRevision: main
-  syncPolicy:
-    syncOptions:
-      - CreateNamespace=true
-```
-
-3. Sync in ArgoCD.
-
-4. `argocd-image-updater` automatically detects out-of date images based on Annotations defined in Application manifests. Subsequent app Sync triggers rolling restarts.
-
+## Manual triggers
 `argocd-image-updater` can be triggered also manually:
 ```
 microk8s config > ~/.kube/config
@@ -43,7 +12,7 @@ export ARGOCD_TOKEN=<yourtoken>
 argocd-image-updater run --applications-api argocd --argocd-server-addr 127.0.0.1:1234 --once --argocd-insecure --loglevel=debug
 ```
 
-#### Annotation example
+## Annotation example
 Example for `app1`. For demonstrating complexity `app1` acts as the Umbrella Helm Chart with Subchart (nginx) and also external dependency (haproxy).
 
 Nginx is part of subchart and image and tag reference in the Annotation must follow path from values.yaml file, i.e. prefixed by nginx (nginx.image.name, nginx.image.tag)
